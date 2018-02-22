@@ -1,0 +1,163 @@
+{
+	"info": {
+		"name": "minikube",
+		"_postman_id": "9348e3ec-b0ac-eab2-0bf9-e0d6fd176f5d",
+		"description": "Test suite for minikube k8s cluster , running nodejs app with mysql as db.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "81471a4a-f639-4af9-8519-d60429208ca8",
+						"type": "text/javascript",
+						"exec": [
+							"var _current = pm.environment.get(\"randomNumber\");",
+							"_current++;",
+							"var postBody = {",
+							"    \"name\": \"Company \"+_current,",
+							"    \"address\": \"Highway \"+_current",
+							"};",
+							"",
+							"//console.log(postBody);",
+							"pm.environment.set(\"randomNumber\", _current );",
+							"pm.environment.set(\"postBody\", JSON.stringify(postBody));"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5989b1a2-5eb3-48bd-8a2b-7de81bb5397e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Inserted\");",
+							"});",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{postBody}}"
+				},
+				"url": {
+					"raw": "http://minikube.local/api/customers",
+					"protocol": "http",
+					"host": [
+						"minikube",
+						"local"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": "Add customer:\n{\"name\":\"customername\", \"address\":\"customeraddress\"}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customers",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bc0134c3-60ab-4547-a126-7e328760ae78",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4b2d9fa3-bfad-4450-8891-ba7e9547b0b6",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"rows\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{postBody}}"
+				},
+				"url": {
+					"raw": "http://minikube.local/api/customers",
+					"protocol": "http",
+					"host": [
+						"minikube",
+						"local"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "13dcda35-f5cf-4f48-8a0d-3e23f07786c0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "baafc947-4750-4474-96e1-38eb8b45da05",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b71855f7-0ee2-41ef-a456-4174aa423728",
+			"key": "createCustRND",
+			"value": "5",
+			"type": "text"
+		}
+	]
+}
