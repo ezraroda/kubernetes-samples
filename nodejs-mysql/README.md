@@ -1,4 +1,4 @@
-# Kubernetees-node-mysql 
+# Kubernetes-node-mysql 
 ## Node-js web app with mysql storage on k8s
 
 ## Pre-requisits

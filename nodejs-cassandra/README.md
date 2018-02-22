@@ -1,4 +1,4 @@
-# Kubernetees-node-cassandra 
+# Kubernetes-node-cassandra 
 ## Node-js web app with cassandra cluster storage on k8s
 
 ## Pre-requisits
