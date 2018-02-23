@@ -30,7 +30,7 @@ app.post('/api/customers', (req, res) => {
   var custAddress = req.body.address;
   client.execute('INSERT INTO customers (id, username, address) VALUES (uuid(), ' + "'" + custName + "'" + ' , ' + "'" + custAddress + "'" + ' ) IF NOT EXISTS', function (err, result) {
     if (!err) {
-      res.send({ rows: result.rows });
+      res.send((result.rowLength || '') + ' Record Inserted');
     } else {
       res.send('ERROR ' + JSON.stringify(err));
     }
