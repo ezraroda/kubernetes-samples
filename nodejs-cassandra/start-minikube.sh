@@ -3,9 +3,9 @@ minikube start --memory 5120 --cpus=4 \
     && kubectl create -f ./cassandra/cassandra-service.yaml \
     && sleep 30 \
     && kubectl create -f ./cassandra/cassandra-statefulset.yaml
-sleep 30
+sleep 40
 kubectl get statefulset cassandra
-sleep 30
+sleep 40
 kubectl get pods -l="app=cassandra"
 sleep 30
 kubectl exec cassandra-0 -- nodetool status
