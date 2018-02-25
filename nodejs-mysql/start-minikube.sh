@@ -9,5 +9,5 @@ docker build -t web:v1 .
 kubectl create -f web-deployment.yaml
 minikubeIP=$(minikube ip)
 echo "ADD the following to your /etc/hosts (if not exists): \n $minikubeIP  minikube.local"
-echo "The open http://minikube.local/ in your browser"
+echo "Then open http://minikube.local/ in your browser"
 exit 0
