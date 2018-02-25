@@ -2,7 +2,7 @@
 	"info": {
 		"name": "minikube",
 		"_postman_id": "9348e3ec-b0ac-eab2-0bf9-e0d6fd176f5d",
-		"description": "Test suite for minikube k8s cluster , running nodejs app with mysql as db.",
+		"description": "Test suite for minikube k8s cluster , running nodejs app with cassandra as db.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
