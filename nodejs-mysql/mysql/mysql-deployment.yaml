@@ -7,7 +7,18 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi
+      storage: 2Gi
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-credentials
+type: Opaque
+data:
+  # root password for MySQL
+  # the plain password is password
+  # echo -n password | base64
+  root.password: cGFzc3dvcmQ=  
 ---
 apiVersion: v1
 kind: Service
@@ -40,9 +51,12 @@ spec:
       - image: database:v1
         name: mysql
         env:
-          # Use secret in real usage
+          # Using secret
         - name: MYSQL_ROOT_PASSWORD
-          value: password
+          valueFrom:
+            secretKeyRef:
+              name: mysql-credentials
+              key: root.password
         ports:
         - containerPort: 3306
           name: mysql

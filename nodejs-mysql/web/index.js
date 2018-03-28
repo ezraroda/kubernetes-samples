@@ -5,15 +5,17 @@ const app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-//Connect to mysql
-var connectionPool = mysql.createPool({
+
+let connectionParams = {
   connectionLimit: 10,
   host: process.env.MYSQL_HOST || 'mysql',
   user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_ROOT_PASSWORD || 'password',
+  password: process.env.MYSQL_ROOT_PASSWORD || 'missing-password',
   database: 'demodb'
-});
+};
 
+//Connect to mysql
+var connectionPool = mysql.createPool(connectionParams);
 
 // Attempt to catch disconnects 
 connectionPool.on('connection', function (connection) {

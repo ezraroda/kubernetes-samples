@@ -27,6 +27,13 @@ spec:
       containers:
       - image: web:v1
         name: web
+        env:
+          # Using secret
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-credentials
+              key: root.password
         ports:
         - containerPort: 8080
           name: web
