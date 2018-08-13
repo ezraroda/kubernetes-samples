@@ -3,17 +3,19 @@ minikube start --memory 5120 --cpus=4 \
     && kubectl create -f ./cassandra/cassandra-service.yaml \
     && sleep 30 \
     && kubectl create -f ./cassandra/cassandra-statefulset.yaml
-sleep 40
+sleep 100
 kubectl get statefulset cassandra
-sleep 40
+sleep 100
 kubectl get pods -l="app=cassandra"
-sleep 30
+sleep 100
 kubectl exec cassandra-0 -- nodetool status
-sleep 30
+sleep 100
 echo "Initilizing demodb keyspace..."
 # set keyspace and table
 kubectl cp ./cassandra/init.sql cassandra-0:/tmp/init.sql
+sleep 30
 kubectl exec cassandra-0 -- cqlsh -f /tmp/init.sql
+sleep 30
 kubectl exec cassandra-0 -- rm -f /tmp/init.sql
 # set web
 eval $(minikube docker-env)

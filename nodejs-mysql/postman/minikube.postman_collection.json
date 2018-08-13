@@ -15,7 +15,7 @@
 						"id": "81471a4a-f639-4af9-8519-d60429208ca8",
 						"type": "text/javascript",
 						"exec": [
-							"var _current = pm.environment.get(\"randomNumber\");",
+							"var _current = pm.environment.get(\"randomNumber\") || 250;",
 							"_current++;",
 							"var postBody = {",
 							"    \"name\": \"Company \"+_current,",
