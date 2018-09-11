@@ -1,5 +1,5 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: web
 spec:
@@ -15,6 +15,8 @@ apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
   name: web
+  labels: 
+    name: web  
 spec: 
   selector:
     matchLabels:
@@ -25,7 +27,7 @@ spec:
         app: web
     spec:  
       containers:
-      - image: web-cassandra:v1
+      - image: web-kafka:v1
         name: web
         ports:
         - containerPort: 8080
