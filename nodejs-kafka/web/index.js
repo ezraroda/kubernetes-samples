@@ -1,6 +1,7 @@
 const express = require('express');
 var bodyParser = require('body-parser');
 var Kafka = require('no-kafka');
+var serveStatic = require('serve-static')
 
 
 var Producer = Kafka.Producer;
@@ -25,6 +26,8 @@ const globalConnectionOptions = { connectionString: KAFKA_BROKER_IP };
 const app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+app.use(serveStatic('www', {'index': ['index.html', 'default.html', 'default.htm']}));
 
 
 var _customers = [];
@@ -94,9 +97,12 @@ function kafkaConnect(attempt) {
 
 
 // Context root
-app.get('/', (req, res) => {
-  res.send("<h2>Congrats It's working ! </h2><h1>Demo for node back-end service with Kafka as storage</h1><br><h2>List of Services</h2><ul><li>HTTP GET - http://minikube.local/api/customers - get list of customers</li> <li>HTTP POST - http://minikube.local/api/customers - add customer</li>  </ul> <h2> See attached postman collection for testing.</h2>");
-});
+// app.get('/', (req, res) => {
+
+
+
+//   res.send("");
+// });
 
 // GET Customers
 app.get('/api/customers', (req, res) => {

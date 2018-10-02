@@ -15,14 +15,17 @@ See [http://strimzi.io/ version @0.5.0](http://strimzi.io/docs/0.5.0/)
 ```
 $ minikube addons list
 - addon-manager: enabled
-- coredns: disabled
+- coredns: enabled
 - dashboard: enabled
 - default-storageclass: enabled
 - efk: disabled
 - freshpod: disabled
 - heapster: disabled
 - ingress: disabled
-- kube-dns: enabled
+- kube-dns: disabled
+- metrics-server: disabled
+- nvidia-driver-installer: disabled
+- nvidia-gpu-device-plugin: disabled
 - registry: disabled
 - registry-creds: disabled
 - storage-provisioner: enabled
