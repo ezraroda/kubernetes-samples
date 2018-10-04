@@ -1,4 +1,4 @@
-# Kubernetes-lookback server  
+# Kubernetes-loopback server  
 ## Node-js web app with kafka cluster on k8s
 
 ## Pre-requisits
