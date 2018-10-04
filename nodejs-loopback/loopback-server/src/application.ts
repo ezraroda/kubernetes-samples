@@ -14,8 +14,6 @@ export class LoopbackServerApplication extends BootMixin(
     // Set up the custom sequence
     this.sequence(MySequence);
 
-    
-
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here
     this.bootOptions = {
