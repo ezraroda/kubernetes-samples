@@ -42,7 +42,7 @@ ingress was successfully enabled
 * Open [http://minikube.local/](http://minikube.local/) to find more.
 
 #### Testing with [Postman](https://www.getpostman.com/)
-* Open [Postman](https://www.getpostman.com/) and import ./postman/minikube.postman_collection.json
+* Open [Postman](https://www.getpostman.com/) and import [./postman/k8s-tester.postman_collection.json](https://github.com/ezraroda/kubernetes-samples/blob/master/nodejs-loopback/postman/k8s-tester.postman_collection.json)
 
 ## LoopBack 4 info
 * Check Getting started [@LoopBack 4](https://loopback.io/doc/en/lb4/)
