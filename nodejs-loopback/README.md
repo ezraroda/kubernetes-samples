@@ -1,5 +1,5 @@
 # Kubernetes-loopback server  
-## Node-js web app with kafka cluster on k8s
+## Node-js web app with Loopback 4 server on k8s
 
 ## Pre-requisits
 * [minikube](https://github.com/kubernetes/minikube)
