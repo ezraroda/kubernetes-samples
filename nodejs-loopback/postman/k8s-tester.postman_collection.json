@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "162cc796-3c8a-4c4c-911e-b07aa71551b5",
+		"name": "k8s-tester",
+		"description": "Test suite for minikube k8s cluster , running nodejs loopback server.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "47271a1f-bf8c-4839-913e-ed7c1267d478",
+						"type": "text/javascript",
+						"exec": [
+							"var _current = pm.globals.get(\"sequence\") || 1;",
+							"_current++;",
+							"var postBody = {",
+							"    \"name\": `Customer ${_current}`,",
+							"    \"address\": `Customer Address ${_current}`",
+							"};",
+							"",
+							"pm.globals.set(\"sequence\", _current);",
+							"",
+							"pm.variables.set(\"postBody\", JSON.stringify(postBody));",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4014c030-dea6-4a38-a3e2-399f76293ff4",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{postBody}}"
+				},
+				"url": {
+					"raw": "http://minikube.local/customers",
+					"protocol": "http",
+					"host": [
+						"minikube",
+						"local"
+					],
+					"path": [
+						"customers"
+					]
+				},
+				"description": "Add customer:\n{\"name\":\"customername\", \"address\":\"customeraddress\"}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customers",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fe119da4-eceb-43b6-bbcb-2e19388a2b16",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "950c8b9c-19cf-4ecf-b1ff-3628d31c1ac7",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{postBody}}"
+				},
+				"url": {
+					"raw": "http://minikube.local/customers",
+					"protocol": "http",
+					"host": [
+						"minikube",
+						"local"
+					],
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "25a4f51c-9840-42fe-9671-12a97b2b13e2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e8ac1ad2-6ad1-49b4-b08e-d7c669a7f902",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a985043e-0094-4208-98d9-a2697f79712d",
+			"key": "postBody",
+			"value": "\"\"",
+			"type": "string"
+		}
+	]
+}

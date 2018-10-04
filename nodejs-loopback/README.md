@@ -1,10 +1,9 @@
-# Kubernetes-node-cassandra 
-## Node-js web app with cassandra cluster storage on k8s
+# Kubernetes-lookback server  
+## Node-js web app with kafka cluster on k8s
 
 ## Pre-requisits
 * [minikube](https://github.com/kubernetes/minikube)
 * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-
 
 ## Setup
 *Setup scripts are supported on Linux and MacOS*
@@ -38,35 +37,13 @@ ingress was successfully enabled
     
     *Stop will remove ALL resources including the minikube VM.* 
 
-## Testing the App
+## Testing the API
 * Update /etc/hosts according to the start prompt
-* Open [http://minikube.local/index.html](http://minikube.local/index.html)
-
-#### Testing with curl
-* Add customer
-```
-curl --request POST \
-  --url http://minikube.local/api/customers \
-  --header 'Cache-Control: no-cache' \
-  --header 'Content-Type: application/json' \
-  --data '{"name":"Company 1","address":"Highway 1"}' 
-```
-* Get customers
-```
-curl -X GET \
-  http://minikube.local/api/customers \
-  -H 'Cache-Control: no-cache'
-```
+* Open [http://minikube.local/](http://minikube.local/) to find more.
 
 #### Testing with [Postman](https://www.getpostman.com/)
-* Open postman and import ./postman/minikube.postman_collection.json
+* Open [Postman](https://www.getpostman.com/) and import ./postman/minikube.postman_collection.json
 
-#### Testing with [newman](https://www.npmjs.com/package/newman)
-* install newman
-```
-node install newman --global
-``` 
-* from ./postman run:
-```
-newman run minikube.postman_collection.json -n 2
-```
+## LoopBack 4 info
+* Check Getting started [@LoopBack 4](https://loopback.io/doc/en/lb4/)
+

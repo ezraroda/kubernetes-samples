@@ -1,0 +1,53 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: web
+spec:
+  type: NodePort
+  selector:
+    app: web
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+---    
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: web
+  labels:
+    name: web
+spec: 
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:  
+      containers:
+      - image: lookback-server:v1
+        name: web
+        ports:
+        - containerPort: 8080
+          name: web
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-web
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: web
+    servicePort: 8080
+  rules:
+  - host: minikube.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web
+          servicePort: 8080                  
