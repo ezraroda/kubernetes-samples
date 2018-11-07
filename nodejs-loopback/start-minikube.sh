@@ -5,10 +5,10 @@ minikube start --memory 5120 --cpus=4
 # set web
 eval $(minikube docker-env)
 cd loopback-server
-docker build -t lookback-server:v1 .
+docker build -f ../conf/Dockerfile -t lookback-server:v1 .
 cd ../
 
-kubectl create -f ./loopback-server/web.yaml
+kubectl create -f ./conf/web.yaml
 
 minikubeIP=$(minikube ip)
 echo "ADD the following to your /etc/hosts (if not exists): \n $minikubeIP  minikube.local"

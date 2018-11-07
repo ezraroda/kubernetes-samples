@@ -1,5 +1,0 @@
-Dockerfile
-node_modules
-*.yaml
-/dist*/
-.vscode/

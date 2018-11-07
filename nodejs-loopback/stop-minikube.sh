@@ -2,7 +2,7 @@
 
 # cleanup
 
-kubectl delete -f ./loopback-server/web.yaml
+kubectl delete -f ./conf/web.yaml
 
 eval $(minikube docker-env -u)
 minikube stop

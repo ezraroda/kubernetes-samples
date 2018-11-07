@@ -21,7 +21,7 @@ import {CustomerRepository} from '../repositories';
 export class CustomerController {
   constructor(
     @repository(CustomerRepository)
-    public customerRepository: CustomerRepository,
+    public customerRepository : CustomerRepository,
   ) {}
 
   @post('/customers', {
