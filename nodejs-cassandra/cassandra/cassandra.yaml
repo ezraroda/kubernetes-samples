@@ -28,9 +28,11 @@ spec:
       labels:
         app: cassandra
     spec:
+      terminationGracePeriodSeconds: 1800
       containers:
       - name: cassandra
-        image: gcr.io/google-samples/cassandra:v11 # needed to support cqlsh
+        image: gcr.io/google-samples/cassandra:v11
+        #image: launcher.gcr.io/google/cassandra3
         imagePullPolicy: Always
         ports:
         - containerPort: 7000
@@ -46,8 +48,8 @@ spec:
             cpu: "500m"
             memory: 1Gi
           requests:
-           cpu: "500m"
-           memory: 1Gi
+            cpu: "500m"
+            memory: 1Gi
         securityContext:
           capabilities:
             add:
@@ -55,7 +57,10 @@ spec:
         lifecycle:
           preStop:
             exec:
-              command: ["/bin/sh", "-c", "PID=$(pidof java) && kill $PID && while ps -p $PID > /dev/null; do sleep 1; done"]
+              command: 
+              - /bin/sh
+              - -c
+              - nodetool drain
         env:
           - name: MAX_HEAP_SIZE
             value: 512M
@@ -69,8 +74,6 @@ spec:
             value: "DC1-K8Demo"
           - name: CASSANDRA_RACK
             value: "Rack1-K8Demo"
-          - name: CASSANDRA_AUTO_BOOTSTRAP
-            value: "false"
           - name: POD_IP
             valueFrom:
               fieldRef:
@@ -95,10 +98,9 @@ spec:
   volumeClaimTemplates:
   - metadata:
       name: cassandra-data
-      annotations:
-        volume.beta.kubernetes.io/storage-class: fast
     spec:
       accessModes: [ "ReadWriteOnce" ]
+      storageClassName: fast
       resources:
         requests:
           storage: 1Gi

@@ -2,8 +2,8 @@
 ## Node-js web app with cassandra cluster storage on k8s
 
 ## Pre-requisits
-* [minikube](https://github.com/kubernetes/minikube)
-* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+* [minikube (v1.1.1)](https://github.com/kubernetes/minikube)
+* [kubectl (v1.14.3)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
 
 ## Setup
