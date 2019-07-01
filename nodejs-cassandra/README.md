@@ -27,7 +27,7 @@ $ minikube addons list
 - registry-creds: disabled
 - storage-provisioner: enabled
 ```
-To enable ingress, run:
+Once minikube is running run the following to enable ingress:
 ```
 $ minikube addons enable ingress
 ingress was successfully enabled
