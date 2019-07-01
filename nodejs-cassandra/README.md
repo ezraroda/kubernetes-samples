@@ -4,6 +4,7 @@
 ## Pre-requisits
 * [minikube (v1.1.1)](https://github.com/kubernetes/minikube)
 * [kubectl (v1.14.3)](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+* [virtualbox](https://www.virtualbox.org/wiki/Downloads)
 
 
 ## Setup
